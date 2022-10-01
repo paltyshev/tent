@@ -71,7 +71,15 @@ export default function Index() {
   };
 
   return (
-    <div className="py-20">
+    <div>
+      <div className="container mx-auto flex flex-col items-center py-12 sm:py-24">
+        <div className="font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center leading-none text-text">
+          Детские игровые палатки
+        </div>
+        <p className="mt-5 sm:mt-10 lg:w-10/12 text-text font-normal text-center text-md">
+          Шатры, игровые замки, домики для принцессы, манежи с доставкой по России
+        </p>
+      </div>
       <Grid model={grid.content.grids[0]} className="gap-3 sm:gap-5">
         {children}
       </Grid>

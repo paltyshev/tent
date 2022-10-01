@@ -130,7 +130,7 @@ function Layout({ children }) {
           <Link
             prefetch="intent"
             to="/"
-            title="Remix"
+            title="Детские игровые палатки"
             className="remix-app__header-home-link"
           >
             <Logo />
@@ -153,7 +153,7 @@ function Layout({ children }) {
           <Link
             prefetch="intent"
             to="/"
-            title="Remix"
+            title="Детские игровые палатки"
             className="remix-app__header-home-link"
           >
             <Logo />

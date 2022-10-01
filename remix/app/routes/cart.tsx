@@ -35,12 +35,12 @@ export default function Cart() {
                 ))}
               </div>
             </div>
-            <p>${item.price.gross * item.quantity}</p>
+            <p>{item.price.gross * item.quantity} ₽</p>
           </div>
         ))}
         <div className="flex justify-between items-center border-t-2 border-text pt-4">
           <p className="font-semibold text-xl">Итого</p>
-          <p>${basket.total.gross}</p>
+          <p>{basket.total.gross} ₽</p>
         </div>
         <Link
           to="/checkout"
