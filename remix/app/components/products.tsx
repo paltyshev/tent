@@ -2,6 +2,7 @@ import { componentContent } from "../crystallize/utils/componentContent";
 import { FrontpageQuery } from "../crystallize/queries/frontpage.generated";
 import { Image } from "@crystallize/react-image";
 import { Link } from "remix";
+import React from "react";
 
 interface ProductsProps {
   donuts: FrontpageQuery["donuts"];

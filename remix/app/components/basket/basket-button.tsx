@@ -1,8 +1,7 @@
 import { useBasket } from "./index";
-import { Link } from "remix";
+import React from "react";
 
 export const BasketButton = () => {
-
   let totalQuantity;
   const basket = useBasket();
 
@@ -15,8 +14,8 @@ export const BasketButton = () => {
   return (
     <div className="relative">
       <svg
-        width="46"
-        height="41"
+        width="35"
+        height="30"
         viewBox="0 0 46 41"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
@@ -39,7 +38,7 @@ export const BasketButton = () => {
         />
       </svg>
 
-      <div className="w-5 h-5 absolute bg-text rounded-full text-primary text-center -right-2 -top-2 text-sm">
+      <div className="w-4 h-4 absolute bg-text rounded-full text-primary text-center -right-2 -top-2 text-xs">
         {totalQuantity}
       </div>
     </div>

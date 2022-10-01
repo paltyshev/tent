@@ -3,18 +3,19 @@ import { Form } from "remix";
 import { Payments } from "../components/payments";
 import { useState } from "react";
 import { CheckoutModelInput } from "../service-api/types.generated";
+import React from "react";
 
 export default function Checkout() {
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
-    email: "",
+    phone: "",
     street: "",
     city: "",
     postalCode: "",
   });
 
-  const { firstName, lastName, email, street, city, postalCode } = state;
+  const { firstName, lastName, phone, street, city, postalCode } = state;
 
   const basket = useBasket();
 
@@ -29,7 +30,7 @@ export default function Checkout() {
       firstName,
       lastName,
       addresses: [
-        { type: "billing", email },
+        { type: "billing", phone },
         {
           type: "delivery",
           street,
@@ -44,53 +45,39 @@ export default function Checkout() {
   };
 
   return (
-    <div className="p-10 mx-auto bg-background1 w-128 mt-20">
+    <div className="p-10 mx-auto bg-background1 w-auto md:w-128 lg:w-128 mt-20">
       <h1 className="text-text text-3xl font-bold mb-10 text-center">
-        Checkout
+        Оформление заказа
       </h1>
       <div className="mx-auto">
         <Form method="post" className="flex flex-wrap gap-5">
           <input
             type="text"
-            name="First Name"
-            placeholder="First name"
+            name="Имя"
+            placeholder="Имя"
             className="w-full"
             onChange={(e) => setState({ ...state, firstName: e.target.value })}
           />
           <input
             type="text"
-            name="Last Name"
-            placeholder="Last name"
+            name="Фамилия"
+            placeholder="Фамилия"
             className="w-full"
             onChange={(e) => setState({ ...state, lastName: e.target.value })}
           />
           <input
-            type="text"
-            name="Email"
-            placeholder="Email"
+            type="tel"
+            name="Телефон"
+            placeholder="Телефон"
             className="w-full"
-            onChange={(e) => setState({ ...state, email: e.target.value })}
+            onChange={(e) => setState({ ...state, phone: e.target.value })}
           />
            <input
             type="text"
-            name="Street"
-            placeholder="Street"
+            name="Адрес доставки"
+            placeholder="Адрес доставки"
             className="w-full"
             onChange={(e) => setState({ ...state, street: e.target.value })}
-          />
-           <input
-            type="text"
-            name="City"
-            placeholder="City"
-            className="w-full"
-            onChange={(e) => setState({ ...state, city: e.target.value })}
-          />
-           <input
-            type="text"
-            name="Postal Code"
-            placeholder="Postal Code"
-            className="w-full"
-            onChange={(e) => setState({ ...state, postalCode: e.target.value })}
           />
         </Form>
       </div>

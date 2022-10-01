@@ -11,7 +11,6 @@ export type Scalars = {
   Int: number;
   Float: number;
   Datetime: any;
-  /** The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf). */
   JSON: any;
 };
 
@@ -187,6 +186,7 @@ export type FolderSubtreeArgs = {
 export type Grid = {
   __typename?: 'Grid';
   createdAt?: Maybe<Scalars['Datetime']>;
+  dimensions?: Maybe<GridDimensions>;
   id: Scalars['ID'];
   language: Scalars['String'];
   meta?: Maybe<Array<MetaProperty>>;
@@ -217,8 +217,16 @@ export type GridColumnMetaPropertyArgs = {
 
 export type GridColumnLayout = {
   __typename?: 'GridColumnLayout';
+  colIndex?: Maybe<Scalars['Int']>;
   colspan?: Maybe<Scalars['Int']>;
+  rowIndex?: Maybe<Scalars['Int']>;
   rowspan?: Maybe<Scalars['Int']>;
+};
+
+export type GridDimensions = {
+  __typename?: 'GridDimensions';
+  columns?: Maybe<Scalars['Int']>;
+  rows?: Maybe<Scalars['Int']>;
 };
 
 export type GridRelationsContent = {
@@ -373,6 +381,40 @@ export type ParagraphContent = {
   videos?: Maybe<Array<Video>>;
 };
 
+export type PriceList = {
+  __typename?: 'PriceList';
+  identifier: Scalars['String'];
+  modifierType: PriceListModifierType;
+  name: Scalars['String'];
+  productVariants: ProductVariantConnection;
+  products?: Maybe<ProductConnection>;
+  tenantId: Scalars['ID'];
+};
+
+
+export type PriceListProductVariantsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  language: Scalars['String'];
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type PriceListProductsArgs = {
+  after?: InputMaybe<Scalars['String']>;
+  before?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  language: Scalars['String'];
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+export enum PriceListModifierType {
+  Absolute = 'ABSOLUTE',
+  Percentage = 'PERCENTAGE',
+  Relative = 'RELATIVE'
+}
+
 export type Product = Item & {
   __typename?: 'Product';
   children?: Maybe<Array<Item>>;
@@ -382,7 +424,9 @@ export type Product = Item & {
   defaultVariant?: Maybe<ProductVariant>;
   externalReference?: Maybe<Scalars['String']>;
   id: Scalars['ID'];
+  /** @deprecated option removed */
   isSubscriptionOnly?: Maybe<Scalars['Boolean']>;
+  /** @deprecated option removed */
   isVirtual?: Maybe<Scalars['Boolean']>;
   language?: Maybe<Scalars['String']>;
   name?: Maybe<Scalars['String']>;
@@ -420,12 +464,37 @@ export type ProductSubtreeArgs = {
   sortField?: InputMaybe<ItemSortField>;
 };
 
+export type ProductConnection = {
+  __typename?: 'ProductConnection';
+  edges?: Maybe<Array<ProductConnectionEdge>>;
+  pageInfo: PageInfo;
+};
+
+export type ProductConnectionEdge = {
+  __typename?: 'ProductConnectionEdge';
+  cursor: Scalars['String'];
+  node: Product;
+};
+
 export type ProductPriceVariant = {
   __typename?: 'ProductPriceVariant';
   currency?: Maybe<Scalars['String']>;
   identifier: Scalars['String'];
   name?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Float']>;
+  priceFor: ProductVariantPriceList;
+  priceForEveryone: ProductVariantPriceList;
+  priceList?: Maybe<ProductVariantPriceList>;
+};
+
+
+export type ProductPriceVariantPriceForArgs = {
+  marketIdentifiers: Array<Scalars['String']>;
+};
+
+
+export type ProductPriceVariantPriceListArgs = {
+  identifier: Scalars['String'];
 };
 
 export type ProductStockLocation = {
@@ -439,6 +508,10 @@ export type ProductStockLocation = {
 export type ProductVariant = {
   __typename?: 'ProductVariant';
   attributes?: Maybe<Array<Maybe<ProductVariantAttribute>>>;
+  /** **EXPERIMENTAL:** Watch out! This feature is still in testing process. */
+  component?: Maybe<Component>;
+  /** **EXPERIMENTAL:** Watch out! This feature is still in testing process. */
+  components?: Maybe<Array<Component>>;
   externalReference?: Maybe<Scalars['String']>;
   firstImage?: Maybe<Image>;
   id: Scalars['ID'];
@@ -448,16 +521,33 @@ export type ProductVariant = {
   isDefault?: Maybe<Scalars['Boolean']>;
   name?: Maybe<Scalars['String']>;
   price?: Maybe<Scalars['Float']>;
+  priceVariant?: Maybe<ProductPriceVariant>;
   priceVariants?: Maybe<Array<ProductPriceVariant>>;
   sku: Scalars['String'];
   stock?: Maybe<Scalars['Int']>;
   stockLocations?: Maybe<Array<ProductStockLocation>>;
   subscriptionPlans?: Maybe<Array<ProductVariantSubscriptionPlan>>;
+  videos?: Maybe<Array<Video>>;
+};
+
+
+export type ProductVariantComponentArgs = {
+  id: Scalars['String'];
+};
+
+
+export type ProductVariantComponentsArgs = {
+  ids?: InputMaybe<Array<Scalars['String']>>;
 };
 
 
 export type ProductVariantPriceArgs = {
   identifier?: InputMaybe<Scalars['String']>;
+};
+
+
+export type ProductVariantPriceVariantArgs = {
+  identifier: Scalars['String'];
 };
 
 
@@ -469,6 +559,28 @@ export type ProductVariantAttribute = {
   __typename?: 'ProductVariantAttribute';
   attribute: Scalars['String'];
   value?: Maybe<Scalars['String']>;
+};
+
+export type ProductVariantConnection = {
+  __typename?: 'ProductVariantConnection';
+  edges?: Maybe<Array<ProductVariantConnectionEdge>>;
+  pageInfo: PageInfo;
+};
+
+export type ProductVariantConnectionEdge = {
+  __typename?: 'ProductVariantConnectionEdge';
+  cursor: Scalars['String'];
+  node: ProductVariant;
+};
+
+export type ProductVariantPriceList = {
+  __typename?: 'ProductVariantPriceList';
+  endDate?: Maybe<Scalars['Datetime']>;
+  identifier?: Maybe<Scalars['String']>;
+  modifier?: Maybe<Scalars['Float']>;
+  modifierType?: Maybe<PriceListModifierType>;
+  price?: Maybe<Scalars['Float']>;
+  startDate?: Maybe<Scalars['Datetime']>;
 };
 
 export type ProductVariantSubscriptionMeteredVariable = {
@@ -543,6 +655,8 @@ export type Query = {
   _service: _Service;
   catalogue?: Maybe<Item>;
   grid?: Maybe<Grid>;
+  /** **EXPERIMENTAL:** Watch out! This feature is still in testing process. */
+  priceList?: Maybe<PriceList>;
   tenant?: Maybe<Tenant>;
   topic?: Maybe<Topic>;
   topics: Array<Topic>;
@@ -562,6 +676,11 @@ export type QueryCatalogueArgs = {
 export type QueryGridArgs = {
   id: Scalars['ID'];
   language?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryPriceListArgs = {
+  identifier: Scalars['String'];
 };
 
 
@@ -651,6 +770,17 @@ export type SubtreeEdge = {
   node: Item;
 };
 
+export type TargetAudienceInput = {
+  customerIdentifier?: InputMaybe<Scalars['String']>;
+  marketIdentifier?: InputMaybe<Scalars['String']>;
+  type: TargetAudienceType;
+};
+
+export enum TargetAudienceType {
+  Everyone = 'EVERYONE',
+  Some = 'SOME'
+}
+
 export type Tenant = {
   __typename?: 'Tenant';
   createdAt?: Maybe<Scalars['Datetime']>;
@@ -676,6 +806,7 @@ export enum TierType {
 
 export type Topic = {
   __typename?: 'Topic';
+  childCount: Scalars['Int'];
   children?: Maybe<Array<Topic>>;
   createdAt?: Maybe<Scalars['Datetime']>;
   id: Scalars['ID'];

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useBasket } from "./basket";
+import React from "react";
 
 export default function Confirmation({ order, success }) {
   const basket = useBasket();
@@ -17,7 +18,7 @@ export default function Confirmation({ order, success }) {
   }, [order]);
 
   if (!order) {
-    return <p>Loading...</p>;
+    return <p>Загрузка...</p>;
   }
 
   const cart = order.cart.map((item) => ({
@@ -30,10 +31,10 @@ export default function Confirmation({ order, success }) {
   const { total } = order;
 
   return (
-    <div className="w-auth p-20 bg-background3 mx-auto mt-20 text-text">
+    <div className="w-auto md:w-128 lg:w-128 p-10 bg-background3 mx-auto mt-20 text-text">
       <div>
-        <h1 className="font-bold text-3xl mb-6">Order Confirmation</h1>
-        <p className="mb-5">We’ve received your order #{order.id}.</p>
+        <h1 className="font-bold text-3xl mb-6">Заказ принят</h1>
+        <p className="mb-5">Мы уже получили ваш заказ №{order.id}.</p>
         <div>
           {cart.map((item, index) => {
             return (
@@ -49,15 +50,15 @@ export default function Confirmation({ order, success }) {
           })}
           <div className="flex flex-col gap-3 border-t-2 pt-5">
             <div className="flex justify-between">
-              <p>Subtotal</p>
+              <p>Сумма</p>
               <p>${total.gross}</p>
             </div>
             <div className="flex justify-between">
-              <p>Tax</p>
+              <p>Доставка</p>
               <p>${total.net - total.gross}</p>
             </div>
             <div className="flex justify-between">
-              <p className="font-bold">Total</p>
+              <p className="font-bold">Итого</p>
               <p>${total.net}</p>
             </div>
           </div>

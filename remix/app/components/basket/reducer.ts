@@ -146,7 +146,7 @@ export default produce(function reducer(draft, { action, ...rest }) {
       if (
         window.ENV.NEXT_PUBLIC_CRYSTALLIZE_TENANT_IDENTIFIER !== 'furniture' &&
         window.ENV.SERVICE_API_URL ===
-          'https://service-api-demo.superfast.shop/api/graphql'
+          'https://remix-service-api.vercel.app/api/graphql'
       ) {
         draft.clientBasket.cart = draft.serverBasket.cart.map(
           ({ id, sku, path, quantity, stock }) => ({

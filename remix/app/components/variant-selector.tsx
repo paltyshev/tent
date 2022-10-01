@@ -1,4 +1,5 @@
 import isEqual from "lodash/isEqual";
+import React from "react";
 
 function reduceAttributes(variants) {
   return variants.reduce((acc, variant) => {
@@ -36,7 +37,7 @@ export const VariantSelector = ({
 
   function onAttributeSelect({ attribute, value, e }) {
     const selectedAttributes = attributesToObject(selectedVariant);
-   
+
     selectedAttributes[attribute] = value;
     // Get the most suitable variant
     let variant = variants.find((variant) => {
@@ -64,8 +65,11 @@ export const VariantSelector = ({
         }
 
         return (
-          <div key={attribute} className="w-40">
-            <p className="my-3 text-text font-semibold">{attribute}</p>
+          <div key={attribute} className="mt-10">
+            <div>
+              <h3 className="text-sm text-gray-900 font-medium">{attribute}</h3>
+            </div>
+
             <div className="flex justify-between mb-5">
               {attr.map((value) => (
                 <button
@@ -78,10 +82,12 @@ export const VariantSelector = ({
                     })
                   }
                   type="button"
-                  className="bg-white drop-shadow-sm w-30 px-3 py-2 rounded-sm text-text font-semibold"
+                  className="m-1 bg-white shadow-sm text-gray-900 cursor-pointer group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none flex-1"
                   style={{
                     border:
-                      value === selectedAttr.value ? "3px solid #373567" : "3px solid transparent",
+                      value === selectedAttr.value
+                        ? "2px solid rgb(99 102 241)"
+                        : "1px solid rgb(197 222 221)",
                   }}
                 >
                   {value}

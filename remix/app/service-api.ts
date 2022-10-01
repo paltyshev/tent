@@ -1,5 +1,5 @@
 export default async function serviceApi({
-  uri = `https://product-storytelling-service-api.vercel.app/api/graphql`,
+  uri = `https://remix-service-api.vercel.app/api/graphql`,
   query,
   variables,
 }) {

@@ -1,12 +1,12 @@
 import { Link } from "remix";
+import React from "react";
 
 export const Notification = () => {
   return (
-    <div className="absolute bottom-0 right-0">
-      <p>Dounot added to basket</p>
-      <div className="flex">
-        <Link to="/">Continue shopping</Link>
-        <Link to="/cart">Go to cart</Link>
+    <div className="text-center text-text">
+      <p className="my-3">Букет добавлен в корзину!</p>
+      <div className="">
+        <Link to="/cart">Перейти в корзину</Link>
       </div>
     </div>
   );

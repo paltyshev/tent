@@ -2,6 +2,7 @@ import { componentContent } from "../crystallize/utils/componentContent";
 import { ProductQuery } from "../crystallize/queries/product.generated";
 import { Image } from "@crystallize/react-image";
 import { Link } from "remix";
+import React from "react";
 
 interface RelatedProductProps {
   related: ProductQuery["product"]["related"];
@@ -10,7 +11,7 @@ interface RelatedProductProps {
 export const RelatedProducts = ({ related }: RelatedProductProps) => {
 
   return (
-    <div className="flex w-full items-start flex-wrap gap-1">
+    <div className="flex w-full items-start flex-wrap gap-2">
       {componentContent(related.content, "ItemRelationsContent").items.map(
         (item, index) => (
           <Link

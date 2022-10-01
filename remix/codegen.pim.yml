@@ -1,4 +1,4 @@
-schema: https://api.crystallize.com/dounot/catalogue
+schema: https://api.crystallize.com/tsvetochki-test/catalogue
 documents:
   - app/crystallize/**/*.graphql
 generates:

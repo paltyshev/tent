@@ -8,6 +8,7 @@ import { normalizeDocumentNode } from "../../crystallize/utils/normalizeDocument
 import { Product } from "../../components/product";
 import { componentContent } from "../../crystallize/utils/componentContent";
 import { HttpCacheHeaderTagger } from "~/http-cache-header-tagger";
+import React from "react";
 
 export let loader: LoaderFunction = async ({ params, request }) => {
   const url = new URL(request.url);
@@ -52,14 +53,6 @@ export default function Index() {
 
   return (
     <div>
-      <div
-        className="bg-background5 z-0 absolute left-0 right-0 rounded-full"
-        style={{
-          bottom: "10%",
-          top: "20%",
-          zIndex: "-1",
-        }}
-      ></div>
       <Product product={data.product} />
     </div>
   );

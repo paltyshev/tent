@@ -1,3 +1,4 @@
+const colors = require("tailwindcss/colors");
 module.exports = {
   mode: "jit",
   content: ["./app/**/*.{ts,tsx,jsx,js}"],
@@ -20,9 +21,17 @@ module.exports = {
       background4: "#EDDCD2",
       background5: "#FAD2E1",
       grey: "rgba(0, 0, 0, 0.03);",
+      gray: colors.gray,
+      indigo: colors.indigo,
+      yellow: colors.yellow,
     },
     fontFamily: {
       text: ["Raleway", "sans-serif"],
+    },
+    fontSize: {
+      xs: ".60rem",
+      sm: ".875rem",
+      "3xl": "1.875rem",
     },
     spacing: {
       auto: "auto",
@@ -80,8 +89,14 @@ module.exports = {
         "4xl": "2rem",
         full: "1000px",
       },
+      gridTemplateRows: {
+        "[auto,auto,1fr]": "auto auto 1fr",
+      },
     },
   },
   variants: {},
-  plugins: [require("@tailwindcss/forms")],
+  plugins: [
+    require("@tailwindcss/aspect-ratio"),
+    require("@tailwindcss/forms"),
+  ],
 };

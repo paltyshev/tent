@@ -6,6 +6,7 @@ import {
 } from "../../service-api/get-order.generated";
 import { LoaderFunction, useLoaderData } from "remix";
 import Confirmation from "../../components/confirmation";
+import React from "react";
 
 export const loader: LoaderFunction = async ({ params }) => {
   const data = await serviceAPIClient.request<
@@ -16,7 +17,7 @@ export const loader: LoaderFunction = async ({ params }) => {
   return { data };
 };
 
-export const ConfirmationStripe = () => {
+export const ConfirmationInvoice = () => {
   const data = useLoaderData();
   const order = data.data?.orders?.get;
 
@@ -26,11 +27,11 @@ export const ConfirmationStripe = () => {
         <Confirmation order={order} success={true} />
       ) : (
         <div className="w-auth p-20 bg-background3 mx-auto mt-20 text-text">
-          <p>Please wait for the order to be processed...</p>
+          <p>Заказ оформляется... Обновите страницу.</p>
         </div>
       )}
     </div>
   );
 };
 
-export default ConfirmationStripe;
+export default ConfirmationInvoice;

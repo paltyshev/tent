@@ -1,0 +1,14 @@
+mutation InoicevCreateOrder(
+            $checkoutModel: CheckoutModelInput!
+          ) {
+            paymentProviders {
+              invoice {
+                createInvoice(
+                  checkoutModel: $checkoutModel
+                ) {
+                  success
+                  orderId
+                }
+              }
+            }
+          }

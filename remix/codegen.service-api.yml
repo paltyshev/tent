@@ -1,15 +1,15 @@
-schema: http://localhost:3001/api/graphql
+schema: https://remix-service-api.vercel.app/api/graphql
 documents:
-  - service-api/**/*.graphql
+  - app/service-api/**/*.graphql
 generates:
-  ./src/service-api/types.generated.ts:
+  ./app/service-api/types.generated.ts:
     plugins:
       - typescript
 
   ./:
     preset: near-operation-file
     presetConfig:
-      baseTypesPath: remix/service-api/types.generated.ts
+      baseTypesPath: ./app/service-api/types.generated.ts
     plugins:
       - typescript-operations
       - typed-document-node

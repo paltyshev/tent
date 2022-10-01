@@ -1,14 +1,14 @@
 # fly.toml file generated for dounot-superfast on 2022-02-28T12:04:20+01:00
 
-app = "dounot-superfast"
+app = "tents"
 
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
 
 [env]
-  CRYSTALLIZE_TENANT_IDENTIFIER = "dounot"
-  SERVICE_API_URL = "https://product-storytelling-service-api.vercel.app/api/graphql"
+  CRYSTALLIZE_TENANT_IDENTIFIER = "tsvetochki-test"
+  SERVICE_API_URL = "https://remix-service-api.vercel.app/api/graphq"
   NODE_ENV="production"
 
 [experimental]
