@@ -47,12 +47,12 @@ export default function App() {
       navigator.serviceWorker.register("/sw.js").then(
         function (registration) {
           console.log(
-            "ServiceWorker registration successful with scope: ",
+            "Регистрация ServiceWorker прошла успешно с областью действия: ",
             registration.scope
           );
         },
         function (err) {
-          console.log("ServiceWorker registration failed: ", err);
+          console.log("Регистрация ServiceWorker не удалась: ", err);
         }
       );
     });
@@ -130,7 +130,7 @@ function Layout({ children }) {
           <Link
             prefetch="intent"
             to="/"
-            title="Remix"
+            title="Детские игровые палатки"
             className="remix-app__header-home-link"
           >
             <Logo />
@@ -153,7 +153,7 @@ function Layout({ children }) {
           <Link
             prefetch="intent"
             to="/"
-            title="Remix"
+            title="Детские игровые палатки"
             className="remix-app__header-home-link"
           >
             <Logo />
