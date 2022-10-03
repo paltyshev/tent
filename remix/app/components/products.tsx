@@ -35,7 +35,7 @@ export const Products = ({ donuts }: ProductsProps) => {
                     ))}
                   </div>
                   <p className="self-end">
-                    ${componentContent(donut, "Product")?.defaultVariant.price}
+                    {componentContent(donut, "Product")?.defaultVariant.price} ₽
                   </p>
                 </div>
                 <Image

@@ -30,6 +30,8 @@ export default function Confirmation({ order, success }) {
 
   const { total } = order;
 
+  const delivery = 350;
+
   return (
     <div className="w-auto md:w-128 lg:w-128 p-10 bg-background3 mx-auto mt-20 text-text">
       <div>
@@ -54,12 +56,12 @@ export default function Confirmation({ order, success }) {
               <p>{total.gross} ₽</p>
             </div>
             <div className="flex justify-between">
-              <p>Доставка</p>
-              <p>{total.net - total.gross} ₽</p>
+              <p>Доставка Почтой России</p>
+              <p>{delivery} ₽</p>
             </div>
             <div className="flex justify-between">
               <p className="font-bold">Итого</p>
-              <p>{total.net} ₽</p>
+              <p>{total.net + delivery} ₽</p>
             </div>
           </div>
         </div>

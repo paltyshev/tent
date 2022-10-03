@@ -4,6 +4,7 @@ import React from "react";
 function reduceAttributes(variants) {
   return variants.reduce((acc, variant) => {
     const attrs = acc;
+    if (!variant.attributes) return attrs;
     variant.attributes.forEach(({ attribute, value }) => {
       const currentAttribute = attrs[attribute];
       if (!currentAttribute) {

@@ -9,7 +9,7 @@ import { useBasket } from "./basket";
 import { useState } from "react";
 import { useNavigate } from "remix";
 import { StarIcon } from '@heroicons/react/20/solid'
-import React from "react";
+import { MapPinIcon } from '@heroicons/react/24/outline'
 
 interface ProductProps {
   product: ProductQuery["product"];
@@ -38,6 +38,28 @@ export const Product = ({ product }: ProductProps) => {
   const reviews = { href: '#', average: 4, totalCount: 17 }
   function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
+  }
+
+  function dateFormat(date: Date, days): String {    
+    date.setDate(date.getDate() + days);
+    let day = date.getDate();
+    let month = date.getMonth();
+    let fmonth = "";
+    switch (month) {
+      case 0: fmonth = "января"; break;
+      case 1: fmonth = "февраля"; break;
+      case 2: fmonth = "марта"; break;
+      case 3: fmonth = "апреля"; break;
+      case 4: fmonth = "мае"; break;
+      case 5: fmonth = "июня"; break;
+      case 6: fmonth = "июля"; break;
+      case 7: fmonth = "августа"; break;
+      case 8: fmonth = "сентября"; break;
+      case 9: fmonth = "октября"; break;
+      case 10: fmonth = "ноября"; break;
+      case 11: fmonth = "декабря"; break;
+    }
+    return day + " " + fmonth;
   }
 
   return (
@@ -123,6 +145,16 @@ export const Product = ({ product }: ProductProps) => {
                 {reviews.totalCount} отзывов
               </a>
             </div>
+          </div>
+
+          {/* Delivery */}
+          <div className="mt-5">
+            <h2 className="font-semibold text-2xl mb-4">
+              Информация о доставке
+            </h2>    
+            <MapPinIcon className="h-6 w-6 inline-block"/>        
+            <p className="text-sm inline-block">Почта России</p>
+            <p className="text-sm">с <span className="underline decoration-indigo-500">{dateFormat(new Date, 7)}</span> по <span className="underline decoration-indigo-500">{dateFormat(new Date, 14)}</span> - <span className="text-lime-500">бесплатно</span> </p>
           </div>
 
           {/* Variants */}

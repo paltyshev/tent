@@ -24,6 +24,7 @@ module.exports = {
       gray: colors.gray,
       indigo: colors.indigo,
       yellow: colors.yellow,
+      lime: colors.lime,
     },
     fontFamily: {
       text: ["Raleway", "sans-serif"],
