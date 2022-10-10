@@ -15,6 +15,7 @@ import tailwindStyles from "./styles/tailwind.css";
 import { BasketProvider } from "./components/basket";
 import { locale } from "./config/locale";
 import { BasketButton } from "./components/basket/basket-button";
+import { BottomNavigation } from "./components/bottom-navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ErrorComponent } from "./components/404";
 import React from "react";
@@ -126,7 +127,7 @@ function Layout({ children }) {
   return (
     <div className="remix-app lg:w-content w-full mx-auto p-3 sm:px-3">
       <header className="remix-app__header">
-        <div className="container remix-app__header-content flex justify-between">
+        <div className="container remix-app__header-content flex justify-between hidden md:flex pb-5">          
           <Link
             prefetch="intent"
             to="/"
@@ -147,9 +148,11 @@ function Layout({ children }) {
       </header>
       <div className="remix-app__main">
         <div className="container remix-app__main-content">{children}</div>
+        <BottomNavigation />
+        <BottomNavigation />
       </div>
-      <footer className="remix-app__footer">
-        <div className="container remix-app__footer-content mt-40">
+      <footer className="remix-app__footer invisible md:visible">
+        <div className="container remix-app__footer-content mt-5">
           <Link
             prefetch="intent"
             to="/"

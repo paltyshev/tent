@@ -35,15 +35,14 @@ export const ProductBody = ({ body, table }: ProductBodyProps) => {
               {paragraph?.images?.map((image) => (
                 <Image
                   {...image}
-                  sizes="200px"
-                  className="rounded-xl overflow-hidden"
+                  className="overflow-hidden"
                   loading="lazy"
                 />
               ))}
             </div>
           )}
           {paragraph.videos && (
-            <div className="my-5">
+            <div className="my-5 z-0">
               <ReactPlayer
                 controls
                 url={
@@ -60,7 +59,7 @@ export const ProductBody = ({ body, table }: ProductBodyProps) => {
                   paragraph?.videos[0].thumbnails.length > 0 &&
                   paragraph?.videos[0].thumbnails[0].url
                 }
-                playing={true}
+                playing={false}
               />
             </div>
           )}
@@ -70,11 +69,10 @@ export const ProductBody = ({ body, table }: ProductBodyProps) => {
         (section, index) => (
           <div
             key={index}
-            className="flex lg:flex-row flex-col justify-between text-text my-20"
+            className="flex lg:flex-row flex-col justify-between text-text"
           >
             <div>
               <h3 className="font-bold text-2xl py-2">{section?.title}</h3>
-              <p className="italic">букета</p>
             </div>
             <div className="lg:w-7/12 w-full">
               {section.properties.map((property, index) => (
@@ -82,7 +80,7 @@ export const ProductBody = ({ body, table }: ProductBodyProps) => {
                   key={index}
                   className="flex justify-between my-3 even:bg-grey px-5 py-2"
                 >
-                  <p>{property.key}</p>
+                  <p className="mr-10">{property.key}</p>
                   <p>{property.value}</p>
                 </div>
               ))}

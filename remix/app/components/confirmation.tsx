@@ -30,11 +30,13 @@ export default function Confirmation({ order, success }) {
 
   const { total } = order;
 
+  const delivery = 350;
+
   return (
-    <div className="w-auto md:w-128 lg:w-128 p-10 bg-background3 mx-auto mt-20 text-text">
-      <div>
-        <h1 className="font-bold text-3xl mb-6">Заказ принят</h1>
-        <p className="mb-5">Мы уже получили ваш заказ №{order.id}.</p>
+    <div className="container mx-auto flex flex-col items-center py-12 sm:py-24">
+      <h1 className="font-extrabold pb-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center leading-none text-text">Заказ принят</h1>
+      <div className="flex flex-col w-full md:w-1/2 gap-5 bg-background3 mt-5 p-5">
+        <p className="mb-5">Мы уже получили ваш заказ № {order.id}.</p>
         <div>
           {cart.map((item, index) => {
             return (
@@ -54,12 +56,12 @@ export default function Confirmation({ order, success }) {
               <p>{total.gross} ₽</p>
             </div>
             <div className="flex justify-between">
-              <p>Доставка</p>
-              <p>{total.net - total.gross} ₽</p>
+              <p>Доставка Почтой России</p>
+              <p>{delivery} ₽</p>
             </div>
             <div className="flex justify-between">
               <p className="font-bold">Итого</p>
-              <p>{total.net} ₽</p>
+              <p>{total.net + delivery} ₽</p>
             </div>
           </div>
         </div>

@@ -11,42 +11,38 @@ interface ProductsProps {
 export const Products = ({ donuts }: ProductsProps) => {
   return (
     <div className="mt-20">
-      <p className="text-lg font-semibold mb-10">Our do(u)nuts</p>
-      <div className="flex items-start flex-wrap lg:gap-1 gap-5">
+      <p className="text-lg font-semibold mb-10">Новые палатки</p>
+      <div className="flex w-full items-start flex-wrap gap-5 grid md:grid-cols-2 lg:grid-cols-3">
         {donuts?.children?.map((donut, index) =>
           !componentContent(donut?.bundle?.content, "BooleanContent")?.value &&
-          donut.bundle ? (
-            <Link
-              to={componentContent(donut, "Product").path}
-              prefetch="intent"
-              className="flex flex-col bg-primary rounded-xl lg:h-106 p-5 lg:w-80"
-              key={index}
-            >
-              <div>
-                <div className="flex justify-between items-start">
-                  <div className="flex gap-1">
+            donut.bundle ? (
+            <Link to={componentContent(donut, "Product").path} prefetch="intent" key={index}>
+              <div className="aspect-square relative w-full h-full bg-gray-200 rounded-lg overflow-hidden">
+                <Image
+                  {...componentContent(donut, "Product")?.defaultVariant
+                    .firstImage}
+                  loading="lazy"
+                  className="w-full h-full object-center object-cover"
+                />
+                <div className="absolute bottom-0 left-0 justify-between place-items-end">
+                  <div className="flex gap-1 mb-1 ml-1">
                     {donut?.topics?.map((topic, index) => (
                       <div
-                        className="text-sm bg-grey px-2 py-1 rounded-2xl"
+                        className="text-xs bg-gray-100 px-2 py-1 rounded-2xl"
                         key={index}
                       >
                         {topic.name}
                       </div>
                     ))}
                   </div>
-                  <p className="self-end">
-                    ${componentContent(donut, "Product")?.defaultVariant.price}
-                  </p>
                 </div>
-                <Image
-                  {...componentContent(donut, "Product")?.defaultVariant
-                    .firstImage}
-                  sizes="(max-width: 1024px) 100vw, 400px"
-                />
-                <h2 className="text-3xl font-bold text-center m-auto w-40">
-                  {componentContent(donut, "Product")?.name}
-                </h2>
               </div>
+              <h2 className="mt-1 text-sm text-gray-700 truncate">
+                {componentContent(donut, "Product")?.name}
+              </h2>
+              <p className="text-lg font-medium text-gray-900">
+                {componentContent(donut, "Product")?.defaultVariant.price} ₽
+              </p>
             </Link>
           ) : null
         )}

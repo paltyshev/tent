@@ -60,7 +60,7 @@ export const InvoiceForm = ({
 			<button
 				type="submit"
 				disabled={status !== "idle"}
-				className="w-full bg-text text-primary py-3 font-semibold mt-5"
+				className="btn btn-block"
 			>
 				{status === "idle" ? "Оформить заказ" : "Подождите..."}
 			</button>

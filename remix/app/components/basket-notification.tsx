@@ -1,5 +1,4 @@
 import { Link } from "remix";
-import React from "react";
 
 export const Notification = () => {
   return (
