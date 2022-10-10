@@ -83,6 +83,7 @@ module.exports = {
         64: "16rem", //256px
         72: "18rem", //288px
         80: "20rem", //320px
+        90: "23rem",
         96: "24rem", //384px
         106: "28rem",
         128: "32rem",
@@ -96,11 +97,18 @@ module.exports = {
       gridTemplateRows: {
         "[auto,auto,1fr]": "auto auto 1fr",
       },
+      aspectRatio: {
+        'square': '1 / 1',
+      },
     },
   },
   variants: {},
   plugins: [
     require("@tailwindcss/aspect-ratio"),
     require("@tailwindcss/forms"),
+    require("daisyui"),
   ],
+  daisyui: {
+    themes: ["emerald"],
+  },
 };

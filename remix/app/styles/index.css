@@ -12,5 +12,6 @@
 
 img {
   height: -webkit-fill-available;
+  width: -webkit-fill-available;
   object-fit: cover;
 }

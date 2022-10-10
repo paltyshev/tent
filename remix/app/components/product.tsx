@@ -40,7 +40,7 @@ export const Product = ({ product }: ProductProps) => {
     return classes.filter(Boolean).join(' ')
   }
 
-  function dateFormat(date: Date, days): String {    
+  function dateFormat(date: Date, days): String {
     date.setDate(date.getDate() + days);
     let day = date.getDate();
     let month = date.getMonth();
@@ -63,7 +63,7 @@ export const Product = ({ product }: ProductProps) => {
   }
 
   return (
-    <div className="py-5">
+    <div>
       <nav aria-label="Breadcrumb">
         <ol
           role="list"
@@ -151,8 +151,8 @@ export const Product = ({ product }: ProductProps) => {
           <div className="mt-5">
             <h2 className="font-semibold text-2xl mb-4">
               Информация о доставке
-            </h2>    
-            <MapPinIcon className="h-6 w-6 inline-block"/>        
+            </h2>
+            <MapPinIcon className="h-6 w-6 inline-block" />
             <p className="text-sm inline-block">Почта России</p>
             <p className="text-sm">с <span className="underline decoration-indigo-500">{dateFormat(new Date, 7)}</span> по <span className="underline decoration-indigo-500">{dateFormat(new Date, 14)}</span> - <span className="text-lime-500">бесплатно</span> </p>
           </div>
@@ -167,14 +167,24 @@ export const Product = ({ product }: ProductProps) => {
           </div>
 
           <button
-            onClick={() => buy()}
-            className="mt-10 w-full bg-indigo-600 border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-          >
-            Купить
-          </button>
+              onClick={() => buy()}
+              className="hidden md:block my-10 btn btn-secondary btn-wide"
+            >
+              В корзину
+            </button>
+
+          <div className="btm-nav mb-12 md:hidden px-3 z-10">
+            <button
+              onClick={() => buy()}
+              className="btn btn-secondary normal-case"
+            >
+              В корзину
+              <p className="normal-case text-xs">Доставим с {dateFormat(new Date, 7)}</p>
+            </button>
+          </div>
         </div>
 
-        <div className="py-10 lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
+        <div className="lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
           {/* Description and details */}
           <div>
             <h3 className="sr-only">Description</h3>

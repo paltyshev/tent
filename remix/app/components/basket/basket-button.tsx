@@ -1,5 +1,4 @@
 import { useBasket } from "./index";
-import React from "react";
 
 export const BasketButton = () => {
   let totalQuantity;
