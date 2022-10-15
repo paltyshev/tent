@@ -103,7 +103,7 @@ export const Product = ({ product }: ProductProps) => {
       <div className="mt-6 mx-auto lg:max-w-7xl">
         <div className="sm:rounded-lg sm:overflow-hidden">
           <Image
-            {...item.defaultVariant.firstImage}
+            {...selectedVariant.images[0]}
             className="w-full h-full object-center object-cover rounded-md overflow-hidden"
           />
         </div>
