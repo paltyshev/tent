@@ -37,7 +37,7 @@ export const BasketButton = () => {
         />
       </svg>
 
-      <div className="w-4 h-4 absolute bg-text rounded-full text-primary text-center -right-2 -top-2 text-xs">
+      <div className="w-4 h-4 absolute bg-text text-white rounded-full text-center -right-2 -top-2 text-xs">
         {totalQuantity}
       </div>
     </div>
