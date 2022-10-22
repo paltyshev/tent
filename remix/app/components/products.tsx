@@ -28,7 +28,7 @@ export const Products = ({ donuts }: ProductsProps) => {
                   <div className="flex gap-1 mb-1 ml-1">
                     {donut?.topics?.map((topic, index) => (
                       <div
-                        className="text-xs bg-gray-100 px-2 py-1 rounded-2xl"
+                        className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-2xl"
                         key={index}
                       >
                         {topic.name}
@@ -37,10 +37,10 @@ export const Products = ({ donuts }: ProductsProps) => {
                   </div>
                 </div>
               </div>
-              <h2 className="mt-1 text-sm text-gray-700 truncate">
+              <h2 className="mt-1 text-sm truncate">
                 {componentContent(donut, "Product")?.name}
               </h2>
-              <p className="text-lg font-medium text-gray-900">
+              <p className="text-lg font-medium">
                 {componentContent(donut, "Product")?.defaultVariant.price} ₽
               </p>
             </Link>

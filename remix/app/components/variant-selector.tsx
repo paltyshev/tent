@@ -1,18 +1,16 @@
 import isEqual from "lodash/isEqual";
-import React from "react";
 
-function reduceAttributes(variants) {
-  return variants.reduce((acc, variant) => {
+function reduceAttributes(variants: any) {
+  return variants.reduce((acc: any, variant: any) => {
     const attrs = acc;
-    if (!variant.attributes) return attrs;
-    variant.attributes.forEach(({ attribute, value }) => {
+    variant?.attributes?.forEach(({ attribute, value }: { attribute: string; value: string }) => {
       const currentAttribute = attrs[attribute];
       if (!currentAttribute) {
         attrs[attribute] = [value];
         return;
       }
 
-      const valueExists = currentAttribute.find((str) => str === value);
+      const valueExists = currentAttribute.find((str: string) => str === value);
       if (!valueExists) {
         attrs[attribute].push(value);
       }
@@ -22,10 +20,10 @@ function reduceAttributes(variants) {
   }, {});
 }
 
-function attributesToObject({ attributes }) {
+function attributesToObject({ attributes }: { attributes: any }) {
   return Object.assign(
     {},
-    ...attributes.map(({ attribute, value }) => ({ [attribute]: value }))
+    ...attributes.map(({ attribute, value }: { attribute: string; value: string }) => ({ [attribute]: value })),
   );
 }
 
@@ -33,24 +31,32 @@ export const VariantSelector = ({
   variants,
   selectedVariant,
   onVariantChange,
+}: {
+  variants: any;
+  selectedVariant: any;
+  onVariantChange: Function;
 }) => {
   const attributes = reduceAttributes(variants);
 
-  function onAttributeSelect({ attribute, value, e }) {
+  function onAttributeSelect({ attribute, value }: { attribute: string; value: string }) {
     const selectedAttributes = attributesToObject(selectedVariant);
 
     selectedAttributes[attribute] = value;
     // Get the most suitable variant
-    let variant = variants.find((variant) => {
+    let variant = variants?.find((variant: any) => {
       if (isEqual(selectedAttributes, attributesToObject(variant))) {
         return true;
       }
       return false;
     });
 
-    if (variant) {
-      onVariantChange(variant);
+    if (!variant) {
+      variant = variants.find((variant: any) =>
+        variant.attributes.some((a: any) => a.attribute === attribute && a.value === value),
+      );
     }
+
+    onVariantChange(variant);
   }
 
   return (
@@ -68,28 +74,21 @@ export const VariantSelector = ({
         return (
           <div key={attribute} className="mt-10">
             <div>
-              <h3 className="text-sm text-gray-900 font-medium">{attribute}</h3>
+              <h3 className="text-sm font-medium">{attribute}</h3>
             </div>
 
-            <div className="flex justify-between mb-5">
+            <div className="grid gap-2 grid-cols-2 mb-5">
               {attr.map((value) => (
                 <button
                   key={value}
                   onClick={(e) =>
                     onAttributeSelect({
                       attribute,
-                      value,
-                      e,
+                      value
                     })
                   }
                   type="button"
-                  className="m-1 bg-white shadow-sm text-gray-900 cursor-pointer group relative border rounded-md py-3 px-4 flex items-center justify-center text-sm font-medium uppercase hover:bg-gray-50 focus:outline-none flex-1"
-                  style={{
-                    border:
-                      value === selectedAttr.value
-                        ? "2px solid rgb(99 102 241)"
-                        : "1px solid rgb(197 222 221)",
-                  }}
+                  className="btn btn-outline btn-secondary w-full"
                 >
                   {value}
                 </button>

@@ -13,7 +13,6 @@ module.exports = {
       primary: "#FFF7F0",
       secondary: "#FEE8F0",
       topicBackground: "#rgba(0, 0, 0, 0.05)",
-      text: "#373567",
       white: "#FFFFFF",
       background1: "#F0EFEB",
       background2: "#C5DEDD",
@@ -109,6 +108,6 @@ module.exports = {
     require("daisyui"),
   ],
   daisyui: {
-    themes: ["emerald"],
+    themes: ["emerald", "dark"],
   },
 };

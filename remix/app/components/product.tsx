@@ -6,7 +6,7 @@ import { ProductBody } from "./product-body";
 import { VariantSelector } from "./variant-selector";
 import { RelatedProducts } from "./related-products";
 import { useBasket } from "./basket";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "remix";
 import { StarIcon } from '@heroicons/react/20/solid'
 import { MapPinIcon } from '@heroicons/react/24/outline'
@@ -20,7 +20,9 @@ export const Product = ({ product }: ProductProps) => {
   let navigate = useNavigate();
 
   const [selectedVariant, setSelectedVariant] = useState(item.variants[0]);
+
   const basket = useBasket();
+
 
   const onVariantChange = (variant) => setSelectedVariant(variant);
 
@@ -71,7 +73,7 @@ export const Product = ({ product }: ProductProps) => {
         >
           <li>
             <div className="flex items-center">
-              <a href="/" className="mr-2 text-sm font-medium text-gray-900">
+              <a href="/" className="mr-2 text-sm font-medium">
                 Главная
               </a>
               <svg
@@ -91,7 +93,7 @@ export const Product = ({ product }: ProductProps) => {
             <a
               href={item.path}
               aria-current="page"
-              className="font-medium text-gray-500 hover:text-gray-600"
+              className="font-medium"
             >
               {item.name}
             </a>
@@ -103,7 +105,7 @@ export const Product = ({ product }: ProductProps) => {
       <div className="mt-6 mx-auto lg:max-w-7xl">
         <div className="sm:rounded-lg sm:overflow-hidden">
           <Image
-            {...selectedVariant.images[0]}
+            {...typeof(selectedVariant.images) == 'undefined' ? item.variants[0].images[0] : selectedVariant.images[0]}
             className="w-full h-full object-center object-cover rounded-md overflow-hidden"
           />
         </div>
@@ -112,21 +114,21 @@ export const Product = ({ product }: ProductProps) => {
       {/* Product info */}
       <div className="mx-auto pt-10 pb-16 lg:max-w-7xl lg:pt-16 lg:pb-24 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8">
         <div className="lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
-          <h1 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl">
+          <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
             {item.name}
           </h1>
         </div>
 
         {/* Options */}
         <div className="mt-4 lg:mt-0 lg:row-span-3">
-          <h2 className="sr-only">Product information</h2>
-          <p className="tracking-tight text-3xl text-gray-900 font-semibold">
-            {selectedVariant.price} ₽
+          <h2 className="sr-only">Информация о товаре</h2>
+          <p className="tracking-tight text-3xl font-semibold">
+            {typeof(selectedVariant.price) == 'undefined' ? item.variants[0].price : selectedVariant.price} ₽
           </p>
 
           {/* Reviews */}
           <div className="mt-6">
-            <h3 className="sr-only">Reviews</h3>
+            <h3 className="sr-only">Рейтинг</h3>
             <div className="flex items-center">
               <div className="flex items-center">
                 {[0, 1, 2, 3, 4].map((rating) => (
@@ -141,7 +143,7 @@ export const Product = ({ product }: ProductProps) => {
                 ))}
               </div>
               <p className="sr-only">{reviews.average} out of 5 stars</p>
-              <a href={reviews.href} className="ml-3 text-sm font-medium text-indigo-600 hover:text-indigo-500">
+              <a href={reviews.href} className="ml-3 text-sm font-medium">
                 {reviews.totalCount} отзывов
               </a>
             </div>
@@ -154,7 +156,7 @@ export const Product = ({ product }: ProductProps) => {
             </h2>
             <MapPinIcon className="h-6 w-6 inline-block" />
             <p className="text-sm inline-block">Почта России</p>
-            <p className="text-sm">с <span className="underline decoration-indigo-500">{dateFormat(new Date, 7)}</span> по <span className="underline decoration-indigo-500">{dateFormat(new Date, 14)}</span> - <span className="text-lime-500">бесплатно</span> </p>
+            <p className="text-sm">с <span className="underline decoration-gray-500">{dateFormat(new Date, 7)}</span> по <span className="underline decoration-gray-500">{dateFormat(new Date, 14)}</span> - <span className="text-lime-500">бесплатно</span> </p>
           </div>
 
           {/* Variants */}
@@ -167,11 +169,11 @@ export const Product = ({ product }: ProductProps) => {
           </div>
 
           <button
-              onClick={() => buy()}
-              className="hidden md:block my-10 btn btn-secondary btn-wide"
-            >
-              В корзину
-            </button>
+            onClick={() => buy()}
+            className="hidden md:block my-10 btn btn-secondary btn-wide"
+          >
+            В корзину
+          </button>
 
           <div className="btm-nav mb-12 md:hidden px-3 z-10">
             <button
@@ -187,9 +189,9 @@ export const Product = ({ product }: ProductProps) => {
         <div className="lg:pt-6 lg:pb-16 lg:col-start-1 lg:col-span-2 lg:border-r lg:border-gray-200 lg:pr-8">
           {/* Description and details */}
           <div>
-            <h3 className="sr-only">Description</h3>
+            <h3 className="sr-only">Описание</h3>
 
-            <div className="space-y-6 text-base text-gray-900">
+            <div className="space-y-6 text-base">
               <ContentTransformer
                 json={
                   componentContent(item.summary.content, "RichTextContent")
@@ -202,9 +204,9 @@ export const Product = ({ product }: ProductProps) => {
         </div>
       </div>
       <div>
-        <p className="text-text mb-4 font-semibold">Похожие букеты</p>
+        <p className="text-text mb-4 font-semibold">Похожие товары</p>
       </div>
-      <RelatedProducts related={item.related} />
+      <RelatedProducts related={item.related} onVariantChange={onVariantChange} />
     </div>
   );
 };

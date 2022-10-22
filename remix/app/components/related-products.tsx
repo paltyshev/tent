@@ -8,13 +8,13 @@ interface RelatedProductProps {
   related: ProductQuery["product"]["related"];
 }
 
-export const RelatedProducts = ({ related }: RelatedProductProps) => {
+export const RelatedProducts = ({ related, onVariantChange }: {related: any, onVariantChange: Function}) => {
 
   return (
     <div className="flex w-full items-start flex-wrap gap-5 grid md:grid-cols-2 lg:grid-cols-3 pb-12">
       {componentContent(related.content, "ItemRelationsContent").items.map(
         (item, index) => (
-          <Link to={item.path} key={index} prefetch="intent">
+          <Link to={item.path} key={index} prefetch="intent" onClick={() => {onVariantChange(item)}}>
             <div className="aspect-square relative w-full h-full bg-gray-200 rounded-lg overflow-hidden">
               <Image
                 {...componentContent(item, "Product").defaultVariant.firstImage}
@@ -34,8 +34,8 @@ export const RelatedProducts = ({ related }: RelatedProductProps) => {
                 </div>
               </div>
             </div>
-            <h2 className="mt-1 text-sm text-gray-700 truncate ">{item.name}</h2>
-            <p className="text-lg font-medium text-gray-900">
+            <h2 className="mt-1 text-sm truncate ">{item.name}</h2>
+            <p className="text-lg font-medium">
               {componentContent(item, "Product").defaultVariant.price} ₽
             </p>
           </Link>

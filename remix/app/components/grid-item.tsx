@@ -15,7 +15,7 @@ export const GridItem = ({ cell }) => {
           <div className="flex gap-1 mb-1 ml-1">
             {cell.item.topics?.map((topic) => (
               <div
-                className="text-xs bg-gray-100 px-2 py-1 rounded-2xl"
+                className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-2xl"
                 key={topic.name}
               >
                 {topic.name}
@@ -24,8 +24,8 @@ export const GridItem = ({ cell }) => {
           </div>
         </div>
       </div>
-      <h2 className="mt-1 text-sm text-gray-700 truncate ">{cell.item.name}</h2>
-      <p className="text-lg font-medium text-gray-900">
+      <h2 className="mt-1 text-sm truncate ">{cell.item.name}</h2>
+      <p className="text-lg font-medium">
         {cell.item.variants[0]?.price} ₽
       </p>
     </Link>

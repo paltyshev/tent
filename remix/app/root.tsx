@@ -18,7 +18,8 @@ import { BasketButton } from "./components/basket/basket-button";
 import { BottomNavigation } from "./components/bottom-navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ErrorComponent } from "./components/404";
-import React from "react";
+import React, { useEffect } from "react";
+import { themeChange } from "theme-change";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,9 @@ export const loader: LoaderFunction = () => {
 
 export default function App() {
   const data = useLoaderData();
+  useEffect(() => {
+    themeChange(false)
+  }, []);
 
   if (typeof window !== "undefined") {
     window.addEventListener("load", function () {
