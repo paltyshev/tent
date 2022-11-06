@@ -16,26 +16,32 @@ export const BottomNavigation = () => {
   }
 
   return (
-    <div className="btm-nav btm-nav-sm md:hidden">
+    <div className="btm-nav btm-nav-md md:hidden">
       <Link to="/">
         <button>
-          <HomeIcon className="h-5 w-5" />
+          <HomeIcon className="h-5 w-5 mx-auto" />
+          <span className="btm-nav-label">Главная</span>
         </button>
       </Link>
       <Link to="/oplata">
         <button>
-          <CreditCardIcon className="h-5 w-5" />
+          <CreditCardIcon className="h-5 w-5 mx-auto" />
+          <span className="btm-nav-label">Оплата</span>
         </button>
       </Link>
       <Link to="/dostavka">
         <button>
-          <TruckIcon className="h-5 w-5" />
+          <TruckIcon className="h-5 w-5 mx-auto" />
+          <span className="btm-nav-label">Доставка</span>
         </button>
       </Link>
       <Link to="/cart">
         <button>
-          <ShoppingBagIcon className="h-5 w-5 inline-block" />
-          {totalQuantity > 0? <div className="badge badge-ghost badge-xs text-xs h-4 absolute ">{totalQuantity}</div> : null}
+          <div>
+            <ShoppingBagIcon className="h-5 w-5 inline-block" />
+            {totalQuantity > 0 ? <div className="badge badge-accent badge-xs text-xs h-4 absolute -pl-2 ">{totalQuantity}</div> : null}
+          </div>
+          <span className="btm-nav-label">Корзина</span>
         </button>
       </Link>
     </div>

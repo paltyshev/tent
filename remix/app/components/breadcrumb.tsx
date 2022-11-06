@@ -9,7 +9,7 @@ export const Breadcrumb = ({ title }) => {
       >
         <li>
           <div className="flex items-center">
-            <Link to="/" className="mr-2 text-sm font-medium text-gray-900">
+            <Link to="/" className="mr-2 text-sm font-medium">
               Главная
             </Link>
             <svg

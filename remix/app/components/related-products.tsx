@@ -8,13 +8,13 @@ interface RelatedProductProps {
   related: ProductQuery["product"]["related"];
 }
 
-export const RelatedProducts = ({ related, onVariantChange }: {related: any, onVariantChange: Function}) => {
+export const RelatedProducts = ({ related, onVariantChange }: { related: any, onVariantChange: Function }) => {
 
   return (
     <div className="flex w-full items-start flex-wrap gap-5 grid md:grid-cols-2 lg:grid-cols-3 pb-12">
       {componentContent(related.content, "ItemRelationsContent").items.map(
         (item, index) => (
-          <Link to={item.path} key={index} prefetch="intent" onClick={() => {onVariantChange(item)}}>
+          <Link to={item.path} key={index} prefetch="none" onClick={() => { onVariantChange(item) }}>
             <div className="aspect-square relative w-full h-full bg-gray-200 rounded-lg overflow-hidden">
               <Image
                 {...componentContent(item, "Product").defaultVariant.firstImage}
@@ -25,7 +25,7 @@ export const RelatedProducts = ({ related, onVariantChange }: {related: any, onV
                 <div className="flex gap-1 mb-1 ml-1">
                   {item.topics?.map((topic) => (
                     <div
-                      className="text-xs bg-gray-100 px-2 py-1 rounded-2xl"
+                      className="text-xs badge badge-accent"
                       key={topic.name}
                     >
                       {topic.name}
@@ -40,7 +40,7 @@ export const RelatedProducts = ({ related, onVariantChange }: {related: any, onV
             </p>
           </Link>
           // <Link
-          //   prefetch="intent"
+          //   prefetch="none"
           //   to={item.path}
           //   key={index}
           //   className="bg-primary px-4 py-3 rounded-xl border-2 border-grey md:w-80 w-full h-80"

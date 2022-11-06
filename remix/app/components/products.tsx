@@ -16,7 +16,7 @@ export const Products = ({ donuts }: ProductsProps) => {
         {donuts?.children?.map((donut, index) =>
           !componentContent(donut?.bundle?.content, "BooleanContent")?.value &&
             donut.bundle ? (
-            <Link to={componentContent(donut, "Product").path} prefetch="intent" key={index}>
+            <Link to={componentContent(donut, "Product").path} prefetch="none" key={index}>
               <div className="aspect-square relative w-full h-full bg-gray-200 rounded-lg overflow-hidden">
                 <Image
                   {...componentContent(donut, "Product")?.defaultVariant
@@ -28,8 +28,8 @@ export const Products = ({ donuts }: ProductsProps) => {
                   <div className="flex gap-1 mb-1 ml-1">
                     {donut?.topics?.map((topic, index) => (
                       <div
-                        className="text-xs bg-gray-100 text-gray-600 px-2 py-1 rounded-2xl"
-                        key={index}
+                        className="text-xs badge badge-accent"
+                        key={topic.name}
                       >
                         {topic.name}
                       </div>

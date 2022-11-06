@@ -36,7 +36,7 @@ export let meta: MetaFunction = ({ data }) => {
   let image = product?.defaultVariant?.firstImage.url;
 
   return {
-    title: `${product?.name} | Dounut`,
+    title: `${product?.name} | Тентин`,
     description: `${description}`,
     "og:description": `${description}`,
     "og:image": `${image}`,

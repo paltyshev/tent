@@ -60,7 +60,7 @@ export const InvoiceForm = ({
 			<button
 				type="submit"
 				disabled={status !== "idle"}
-				className="btn btn-secondary btn-block"
+				className="btn btn-primary btn-block"
 			>
 				{status === "idle" ? "Оформить заказ" : "Подождите..."}
 			</button>

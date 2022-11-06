@@ -10,7 +10,6 @@ import { GridItem } from "../components/grid-item";
 import { Products } from "../components/products";
 import { componentContent } from "../crystallize/utils/componentContent";
 import { HttpCacheHeaderTagger } from "~/http-cache-header-tagger";
-import React from "react";
 
 export let loader: LoaderFunction = async ({ request }) => {
   const url = new URL(request.url);

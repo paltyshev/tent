@@ -7,7 +7,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  useCatch,
   useLoaderData,
 } from "remix";
 import type { MetaFunction } from "remix";
@@ -18,13 +17,12 @@ import { BasketButton } from "./components/basket/basket-button";
 import { BottomNavigation } from "./components/bottom-navigation";
 import { QueryClient, QueryClientProvider } from "react-query";
 import { ErrorComponent } from "./components/404";
-import React, { useEffect } from "react";
-import { themeChange } from "theme-change";
+import React from "react";
 
 const queryClient = new QueryClient();
 
 export const meta: MetaFunction = () => {
-  return { title: "Dounut" };
+  return { title: "Тентин" };
 };
 
 export function links() {
@@ -43,9 +41,6 @@ export const loader: LoaderFunction = () => {
 
 export default function App() {
   const data = useLoaderData();
-  useEffect(() => {
-    themeChange(false)
-  }, []);
 
   if (typeof window !== "undefined") {
     window.addEventListener("load", function () {
@@ -89,7 +84,7 @@ export default function App() {
           rel="apple-touch-startup-image"
           href="/images/icons/windows11/Square150x150Logo.scale-100.png"
         />
-        <meta name="apple-mobile-web-app-title" content="Dounot" />
+        <meta name="apple-mobile-web-app-title" content="Детские игровые палатки - Тентин" />
         <link rel="manifest" href="/manifest.json" />
 
         <Meta />
@@ -131,17 +126,20 @@ function Layout({ children }) {
   return (
     <div className="remix-app lg:w-content w-full mx-auto p-3 sm:px-3">
       <header className="remix-app__header">
-        <div className="container remix-app__header-content flex justify-between hidden md:flex pb-5">          
+        <div className="navbar p-0 bg-base-100 container remix-app__header-content flex justify-between hidden md:flex pb-5">
+          <div className="flex-1">
+            <Link
+              prefetch="none"
+              to="/"
+              title="Детские игровые палатки"
+              className="btn btn-ghost p-0 normal-case text-2xl remix-app__header-home-link"
+            >
+              <Logo />
+              <span className="mt-3 ml-1">
+                TENT IN</span></Link>
+          </div>
           <Link
-            prefetch="intent"
-            to="/"
-            title="Детские игровые палатки"
-            className="remix-app__header-home-link"
-          >
-            <Logo />
-          </Link>
-          <Link
-            prefetch="intent"
+            prefetch="none"
             to="/cart"
             title="Your cart"
             className="remix-app__header-link"
@@ -153,12 +151,11 @@ function Layout({ children }) {
       <div className="remix-app__main">
         <div className="container remix-app__main-content">{children}</div>
         <BottomNavigation />
-        <BottomNavigation />
       </div>
       <footer className="remix-app__footer invisible md:visible">
         <div className="container remix-app__footer-content mt-5">
           <Link
-            prefetch="intent"
+            prefetch="none"
             to="/"
             title="Детские игровые палатки"
             className="remix-app__header-home-link"
@@ -184,22 +181,22 @@ function Logo(props: React.ComponentPropsWithoutRef<"svg">) {
     >
       <g>
         <path
-          fill="#16153B"
+          fill="#667301"
           d="M282.946,479.473h-53.893c-7.442,0-13.474-6.032-13.474-13.474c0-7.442,6.032-13.474,13.474-13.474
 		h53.893c7.442,0,13.474,6.032,13.474,13.474C296.42,473.441,290.388,479.473,282.946,479.473z"
         />
         <path
-          fill="#16153B"
+          fill="#667301"
           d="M498.526,479.473h-53.893c-7.442,0-13.474-6.032-13.474-13.474c0-7.442,6.032-13.474,13.474-13.474
 		h53.893c7.442,0,13.474,6.032,13.474,13.474C512,473.441,505.968,479.473,498.526,479.473z"
         />
         <path
-          fill="#16153B"
+          fill="#667301"
           d="M67.366,479.473H13.474C6.032,479.473,0,473.441,0,465.999c0-7.442,6.032-13.474,13.474-13.474
 		h53.893c7.442,0,13.474,6.032,13.474,13.474C80.84,473.441,74.808,479.473,67.366,479.473z"
         />
         <path
-          fill="#16153B"
+          fill="#667301"
           d="M471.581,479.473h-68.083c-37.574,0-71.907-22.098-87.468-56.298l-29.442-64.708
 		c-3.081-6.773-0.089-14.763,6.683-17.845c6.773-3.083,14.762-0.09,17.845,6.683l29.443,64.707
 		c11.197,24.61,35.902,40.51,62.939,40.51h51.287l-42.099-189.445c-4.626-20.812-16.117-39.877-32.363-53.685L256,103.721
@@ -211,25 +208,25 @@ function Logo(props: React.ComponentPropsWithoutRef<"svg">) {
 		c0.887,3.99-0.085,8.166-2.642,11.354C479.535,477.618,475.668,479.473,471.581,479.473z"
         />
         <path
-          fill="#16153B"
+          fill="#667301"
           d="M236.176,116.642c-3.448,0-6.897-1.315-9.527-3.946c-5.262-5.262-5.262-13.793,0-19.056
 		l57.167-57.167c5.262-5.262,13.793-5.262,19.056,0c5.262,5.262,5.262,13.793,0,19.056l-57.167,57.167
 		C243.072,115.327,239.624,116.642,236.176,116.642z"
         />
         <path
-          fill="#16153B"
+          fill="#667301"
           d="M275.824,116.642c-3.448,0-6.897-1.315-9.527-3.946L209.13,55.529
 		c-5.262-5.262-5.262-13.793,0-19.056c5.262-5.262,13.793-5.262,19.056,0l57.167,57.167c5.262,5.262,5.262,13.793,0,19.056
 		C282.721,115.327,279.273,116.642,275.824,116.642z"
         />
       </g>
       <path
-        fill="#97C4E8"
+        fill="#8eab78"
         d="M425.154,257.352c-5.658-22.679-18.258-43.053-36.106-58.222L255.999,86.04L122.95,199.13
 	c-17.846,15.169-30.448,35.543-36.106,58.222L425.154,257.352L425.154,257.352z"
       />
       <path
-        fill="#16153B"
+        fill="#667301"
         d="M425.156,270.826H86.846c-4.149,0-8.064-1.911-10.617-5.179c-2.555-3.269-3.459-7.532-2.455-11.556
 	c6.389-25.608,20.378-48.164,40.452-65.228l133.049-113.09c5.031-4.277,12.422-4.277,17.453,0l133.05,113.09
 	c20.075,17.065,34.063,39.618,40.452,65.228c1.004,4.025,0.098,8.286-2.455,11.556C433.22,268.915,429.303,270.826,425.156,270.826z

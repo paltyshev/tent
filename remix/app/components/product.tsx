@@ -6,8 +6,8 @@ import { ProductBody } from "./product-body";
 import { VariantSelector } from "./variant-selector";
 import { RelatedProducts } from "./related-products";
 import { useBasket } from "./basket";
-import { useEffect, useRef, useState } from "react";
-import { useNavigate } from "remix";
+import { useState } from "react";
+import { Link, useNavigate } from "remix";
 import { StarIcon } from '@heroicons/react/20/solid'
 import { MapPinIcon } from '@heroicons/react/24/outline'
 
@@ -73,9 +73,9 @@ export const Product = ({ product }: ProductProps) => {
         >
           <li>
             <div className="flex items-center">
-              <a href="/" className="mr-2 text-sm font-medium">
+              <Link to="/" className="mr-2 text-sm font-medium">
                 Главная
-              </a>
+              </Link>
               <svg
                 width={16}
                 height={20}
@@ -90,13 +90,12 @@ export const Product = ({ product }: ProductProps) => {
             </div>
           </li>
           <li className="text-sm">
-            <a
-              href={item.path}
+            <Link to={item.path}
               aria-current="page"
               className="font-medium"
             >
               {item.name}
-            </a>
+            </Link>
           </li>
         </ol>
       </nav>
@@ -143,9 +142,9 @@ export const Product = ({ product }: ProductProps) => {
                 ))}
               </div>
               <p className="sr-only">{reviews.average} out of 5 stars</p>
-              <a href={reviews.href} className="ml-3 text-sm font-medium">
+              <Link to={reviews.href} className="ml-3 text-sm font-medium">
                 {reviews.totalCount} отзывов
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -170,15 +169,15 @@ export const Product = ({ product }: ProductProps) => {
 
           <button
             onClick={() => buy()}
-            className="hidden md:block my-10 btn btn-secondary btn-wide"
+            className="hidden md:block my-10 btn btn-primary btn-wide"
           >
             В корзину
           </button>
 
-          <div className="btm-nav mb-12 md:hidden px-3 z-10">
+          <div className="btm-nav mb-16 md:hidden px-3 z-10">
             <button
               onClick={() => buy()}
-              className="btn btn-secondary normal-case"
+              className="btn btn-primary normal-case"
             >
               В корзину
               <p className="normal-case text-xs">Доставим с {dateFormat(new Date, 7)}</p>

@@ -31,6 +31,7 @@ module.exports = {
     fontSize: {
       xs: ".60rem",
       sm: ".875rem",
+      "2xl": "1.25rem",
       "3xl": "1.875rem",
       "4xl": "2.25rem",
       "5xl": "3rem",
@@ -108,6 +109,32 @@ module.exports = {
     require("daisyui"),
   ],
   daisyui: {
-    themes: ["emerald", "dark"],
+    themes: [
+      {
+        light: {
+          ...require("daisyui/src/colors/themes")["[data-theme=light]"],
+          primary: "#a03e40",
+          secondary: "#9b4427",
+          neutral: "#998e8e",
+          accent: "#596400",
+          "base-100": "#fffbff",
+          "base-content": "#201a1a",
+          "accent-content": "#ffffff",
+        },
+      },
+      {
+        dark: {
+          ...require("daisyui/src/colors/themes")["[data-theme=dark]"],
+          primary: "#FF8787",
+          secondary: "#F8C4B4",
+          "secondary-content": "#5d1800",
+          neutral: "#998e8e",
+          accent: "#c1cf5f",
+          "accent-content": "#2d3400",
+          "base-100": "#201a1a",
+          "base-content": "#ede0df",
+        },
+      },
+    ],
   },
 };

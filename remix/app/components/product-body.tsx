@@ -72,13 +72,13 @@ export const ProductBody = ({ body, table }: ProductBodyProps) => {
             className="flex lg:flex-row flex-col justify-between text-text"
           >
             <div>
-              <h3 className="font-bold text-2xl py-2">{section?.title}</h3>
+              <h3 className="font-bold text-xl py-1">{section?.title}</h3>
             </div>
             <div className="lg:w-7/12 w-full">
               {section.properties.map((property, index) => (
                 <div
                   key={index}
-                  className="flex justify-between my-3 even:bg-grey px-5 py-2"
+                  className="flex justify-between my-1 even:bg-accent-content px-5 py-1"
                 >
                   <p className="mr-10">{property.key}</p>
                   <p>{property.value}</p>

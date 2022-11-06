@@ -39,7 +39,7 @@ export const VariantSelector = ({
   const attributes = reduceAttributes(variants);
 
   function onAttributeSelect({ attribute, value }: { attribute: string; value: string }) {
-    const selectedAttributes = attributesToObject(selectedVariant);
+    const selectedAttributes = attributesToObject(typeof(selectedVariant.attributes) == "undefined" ? variants[0] : selectedVariant);
 
     selectedAttributes[attribute] = value;
     // Get the most suitable variant
@@ -63,13 +63,10 @@ export const VariantSelector = ({
     <div>
       {Object.keys(attributes).map((attribute) => {
         const attr = attributes[attribute];
-        const selectedAttr = selectedVariant.attributes.find(
+        //if (typeof(selectedVariant.attributes) == 'undefined') return null;
+        const selectedAttr = (typeof(selectedVariant.attributes) == "undefined" ? variants[0].attributes : selectedVariant.attributes).find(
           (a) => a.attribute === attribute
         );
-
-        if (!selectedAttr) {
-          return null;
-        }
 
         return (
           <div key={attribute} className="mt-10">
@@ -88,7 +85,7 @@ export const VariantSelector = ({
                     })
                   }
                   type="button"
-                  className="btn btn-outline btn-secondary w-full"
+                  className="btn btn-outline btn-primary w-full"
                 >
                   {value}
                 </button>

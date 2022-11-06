@@ -53,7 +53,7 @@ export default function Checkout() {
         >
           <li>
             <div className="flex items-center">
-              <Link to="/" className="mr-2 text-sm font-medium text-gray-900">
+              <Link to="/" className="mr-2 text-sm font-medium">
                 Главная
               </Link>
               <svg
@@ -71,7 +71,7 @@ export default function Checkout() {
           </li>
           <li className="text-sm">
             <div className="flex items-center">
-              <Link to="/cart" className="mr-2 text-sm font-medium text-gray-900">
+              <Link to="/cart" className="mr-2 text-sm font-medium">
                 Корзина
               </Link>
               <svg
@@ -98,34 +98,34 @@ export default function Checkout() {
         <h1 className="font-extrabold pb-5 text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-center leading-none text-text">
           Оформление заказа
         </h1>
-        <div className="flex flex-col w-full md:w-1/2 gap-5 bg-background1 mt-5 p-5 md:max-w-xs">
+        <div className="flex flex-col w-full md:w-1/2 gap-5 mt-5 md:max-w-xs">
           <Form method="post" className="flex flex-wrap gap-5">
             <input
               type="text"
               name="Имя"
               placeholder="Имя"
-              className="input w-full md:max-w-xs"
+              className="input input-bordered w-full md:max-w-xs"
               onChange={(e) => setState({ ...state, firstName: e.target.value })}
             />
             <input
               type="text"
               name="Фамилия"
               placeholder="Фамилия"
-              className="input w-full md:max-w-xs"
+              className="input input-bordered w-full md:max-w-xs"
               onChange={(e) => setState({ ...state, lastName: e.target.value })}
             />
             <input
               type="tel"
               name="Телефон"
               placeholder="Телефон"
-              className="input w-full md:max-w-xs"
+              className="input input-bordered w-full md:max-w-xs"
               onChange={(e) => setState({ ...state, phone: e.target.value })}
             />
             <input
               type="text"
               name="Адрес доставки"
               placeholder="Адрес доставки"
-              className="input w-full md:max-w-xs"
+              className="input input-bordered w-full md:max-w-xs"
               onChange={(e) => setState({ ...state, street: e.target.value })}
             />
           </Form>
